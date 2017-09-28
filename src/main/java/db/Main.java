@@ -6,9 +6,13 @@ public class Main {
     public static void main(String[] args) throws SQLException, ClassNotFoundException {
         Connection connection = getConnection();
         Statement statement = connection.createStatement();
+
         String sqlQuery = "select zakazi.id as 'id zakaza',rinki.name as'imya rinka',baza.adress as'adress bazi' from (zakazi join rinki on zakazi.id_rinka= rinki.id join baza on rinki.id_bazi=baza.id) ;";
         ResultSet result = statement.executeQuery(sqlQuery);
         print(result);
+
+        String updateSqlQuery = "INSERT INTO `grushi`.`baza` (`adress`, `price`, `nazvanie`, `razmer_grush`, `col`) VALUES ('df', '4', 't', '4t', '4');";
+        statement.execute(updateSqlQuery);
     }
 
     private static void print(ResultSet set) throws SQLException {
